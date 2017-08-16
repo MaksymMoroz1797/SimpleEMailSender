@@ -73,26 +73,4 @@ public class Sender implements Runnable {
             System.err.println(e);
         }
     }
-    public static void main(String[] args) {
-        final Logger log = Logger.getLogger(Sender.class); log.info("1111111111111111111111111111111");
-        ResourceBundle resources = ResourceBundle.getBundle("properties", Locale.ENGLISH);
-        String login = resources.getString("mail.user.login");
-        String password = resources.getString("mail.user.password");
-        Authenticator auth = new MyAuthenticator(login, password);
-        String smtpHost = resources.getString("mail.smtp.host");
-        String smtpPort = resources.getString("mail.smtp.port");
-        String ssl = resources.getString("mail.smtp.ssl");
-        Properties props = new Properties();
-        props.put("mail.smtp.port", smtpPort);
-        props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.ssl.enable", ssl);
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.mime.charset", "UTF-8");
-        String adressTo = login;
-        String subject = "Test";
-        String content = "Hello!";
-        Sender sender = Sender.factory("maximuss12435@gmail.com", auth, props);
-        sender.setMessage(adressTo, subject, content);
-        //new Thread(sender).start();
-    }
 }
